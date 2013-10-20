@@ -1,0 +1,80 @@
+{
+    actor: 'conn4.domnode12',
+    nodeType: 9,
+    nodeName: '#document',
+    numChildren: 3
+}
+geckoNode {
+    client: {
+        options: {},
+        incoming: < Buffer > ,
+        _pendingRequests: [],
+        _activeRequests: {},
+        _events: {
+            error: [Function],
+            end: [Function],
+            timeout: [Function],
+            message: [Object]
+        },
+        client: {
+            _connecting: false,
+            _handle: [Object],
+            _readableState: [Object],
+            readable: true,
+            domain: null,
+            _events: [Object],
+            _maxListeners: 10,
+            _writableState: [Object],
+            writable: true,
+            allowHalfOpen: false,
+            onend: null,
+            destroyed: false,
+            errorEmitted: false,
+            bytesRead: 1010,
+            _bytesDispatched: 120,
+            _pendingData: null,
+            _pendingEncoding: '',
+            pipe: [Function],
+            addListener: [Function],
+            on: [Function],
+            pause: [Function],
+            resume: [Function],
+            read: [Function],
+            _consuming: true
+        }
+    },
+    actor: 'conn4.domnode12',
+    walker: {
+        client: {
+            options: {},
+            incoming: < Buffer > ,
+            _pendingRequests: [],
+            _activeRequests: {},
+            _events: [Object],
+            client: [Object]
+        },
+        actor: 'conn4.domwalker13',
+        _events: {
+            newMutations: [Object]
+        },
+        root: {
+            client: [Object],
+            actor: 'conn4.domnode12',
+            walker: [Circular],
+            getNode: [Function],
+            getNodeArray: [Function],
+            getNodeList: [Function],
+            nodeType: 9,
+            nodeName: '#document',
+            namespaceURI: undefined,
+            attrs: undefined
+        }
+    },
+    getNode: [Function],
+    getNodeArray: [Function],
+    getNodeList: [Function],
+    nodeType: 9,
+    nodeName: '#document',
+    namespaceURI: undefined,
+    attrs: undefined
+}

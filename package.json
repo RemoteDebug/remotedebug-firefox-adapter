@@ -1,0 +1,23 @@
+{
+  "name": "remotedebug-gecko-bridge",
+  "version": "0.0.1",
+  "description": "RemoteDebug Firefox bridge",
+  "author": "Kenneth Auchenberg",
+  "license": "MIT",
+  "dependencies": {
+    "firefox-client": "~0.0.3",
+    "q": "~0.9.7",
+    "ws": "~0.4.31",
+    "express": "~3.4.0",
+    "node.extend": "~1.0.8"
+  },
+  "directories": {
+    "bin": "bin"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/remotedebug-gecko-bridge.js"
+  },
+  "main": "proxy.js"
+}
