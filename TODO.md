@@ -1,1 +1,2 @@
+- Error handling when Firefox isn't started, so the client connection fails.
 - Pull for Firefox connections in the background.
