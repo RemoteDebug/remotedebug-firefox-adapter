@@ -5,7 +5,7 @@
   "author": "Kenneth Auchenberg",
   "license": "MIT",
   "dependencies": {
-    "firefox-client": "~0.0.3",
+    "firefox-client": "https://github.com/auchenberg/firefox-client/tarball/master",
     "q": "~0.9.7",
     "ws": "~0.4.31",
     "express": "~3.4.0",
