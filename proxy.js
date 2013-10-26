@@ -13,7 +13,6 @@ var Page = require('./lib/page');
 var Console = require('./lib/console');
 var Info = require('./lib/info');
 
-
 const defaultOptions = {
     client: {
         port: 6000
@@ -41,8 +40,6 @@ function RemoteDebugProxy(options) {
     new Page(this.server, this.client);
     new Console(this.server, this.client);
     new Info(this.server, this.client);
-
-
 }
 
 RemoteDebugProxy.prototype = {
