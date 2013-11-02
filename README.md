@@ -13,6 +13,17 @@ This project provides a Mozilla Firefox Remote Debugging to RemoteDebug protocol
 6. Locate your tab in the json-output, and open the ```devtoolsUrl``` url in Chrome.
 7. Bam! Champagne!
 
+## Status
+This project is in the very early stage. The basic shell is there to expose a RemoteDebug compliant server: Listen and trigger notifications, handle multiple connections, etc. 
+
+Current supported operations:
+- Console: Evaluate expression
+- DOM: getDocument
+- DOM: highlightNode
+- DOM: hideHighlight
+- DOM: setAttributesAsText
+
+
 ##  How to enable remote debugging in Firefox?
 
 ### Linux
