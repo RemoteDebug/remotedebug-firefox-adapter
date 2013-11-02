@@ -1,6 +1,6 @@
 # Firefox to RemoteDebug protocol bridge.
 
-This project provides a Mozilla Firefox Remote Debugging to RemoteDebug protocol bridge, to enable communication with tools like Chrome DevTools.
+This project provides a Mozilla Firefox Remote Debugging to [RemoteDebug protocol](http://remotedebug.org) bridge, to enable communication with tools like Chrome DevTools.
 
 ![](https://raw.github.com/auchenberg/remotedebug-firefox-bridge/master/animation.gif)
 
