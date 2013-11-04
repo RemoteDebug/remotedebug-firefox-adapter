@@ -2,7 +2,7 @@ var Q = require('q');
 
 var Client = require('./lib/client');
 var Server = require('./lib/server');
-var log = require('./lib/logger');
+var logger = require('./lib/logger');
 
 var Worker = require('./lib/worker');
 var Network = require('./lib/network');
@@ -52,8 +52,8 @@ RemoteDebugProxy.prototype = {
         var whenServerStarted = this.server.start();
 
         Q.allSettled([whenClientConnected, whenServerStarted]).then(function() {
-            console.log('RemoteDebug proxy is ready.');
-        });
+            logger.info('RemoteDebug proxy is ready.');
+        }.bind(this));
 
     }
 
