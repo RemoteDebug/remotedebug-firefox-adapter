@@ -1,0 +1,12 @@
+req:
+
+{
+    method: 'Runtime.evaluate',
+    params: { expression: 'window.isBracketsLiveDevelopmentInterstitialPageLoaded' },
+    id: 1
+};
+
+
+response:
+
+{"result":{"result":{"type":"undefined"},"wasThrown":false},"id":1}
