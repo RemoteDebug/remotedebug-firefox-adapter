@@ -12,6 +12,7 @@ var CSS = require('./lib/css');
 var Page = require('./lib/page');
 var Console = require('./lib/console');
 var Info = require('./lib/info');
+var Runtime = require('./lib/runtime');
 
 const defaultOptions = {
     client: {
@@ -40,6 +41,7 @@ function RemoteDebugProxy(options) {
     new Page(this.server, this.client);
     new Console(this.server, this.client);
     new Info(this.server, this.client);
+    new Runtime(this.server, this.client);
 }
 
 RemoteDebugProxy.prototype = {
