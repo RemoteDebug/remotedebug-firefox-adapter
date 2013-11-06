@@ -53,6 +53,7 @@ RemoteDebugProxy.prototype = {
 
         Q.allSettled([whenClientConnected, whenServerStarted]).then(function() {
             logger.info('RemoteDebug proxy is ready.');
+            logger.debug('-> visit http://localhost:' + this.options.server.port + '/json/');
         }.bind(this));
 
     }
