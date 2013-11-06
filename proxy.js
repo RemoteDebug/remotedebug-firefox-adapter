@@ -19,7 +19,7 @@ const defaultOptions = {
         port: 6000
     },
     server: {
-        port: 8080
+        port: 9222
     }
 
 };
