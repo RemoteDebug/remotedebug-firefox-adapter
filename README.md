@@ -7,7 +7,7 @@ This project provides a Mozilla Firefox Remote Debugging to [RemoteDebug protoco
 ## Getting started
 1. npm install
 2. Start Firefox (Aurora or Nightly to get all features)
-3. Enable remote debugging in Firefox (type "listen 6000" in Web Console)
+3. Enable remote debugging in Firefox by typing "listen 6000" in GCLI (Shift + F2).
 4. npm start
 5. Open http://localhost:9222/json in Chrome.
 6. Locate your tab in the json-output, and open the ```devtoolsUrl``` url in Chrome.
