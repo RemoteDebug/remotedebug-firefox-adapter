@@ -3,17 +3,19 @@ var Q = require('q');
 var Client = require('./lib/client');
 var Server = require('./lib/server');
 var logger = require('./lib/logger');
-
-var Worker = require('./lib/worker');
-var Network = require('./lib/network');
-var DOM = require('./lib/dom');
 var DOMNodeCache = require('./lib/dom.node.cache');
-var CSS = require('./lib/css');
-var Page = require('./lib/page');
-var Console = require('./lib/console');
-var Info = require('./lib/info');
-var Runtime = require('./lib/runtime');
 
+// Agents
+var Info = require('./agents/info');
+var Console = require('./agents/console');
+var Runtime = require('./agents/runtime');
+var Page = require('./agents/page');
+var CSS = require('./agents/css');
+var DOM = require('./agents/dom');
+var Network = require('./agents/network');
+var Worker = require('./agents/worker');
+
+// Options
 const defaultOptions = {
     client: {
         port: 6000
@@ -23,6 +25,7 @@ const defaultOptions = {
     }
 
 };
+
 
 function RemoteDebugProxy(options) {
 

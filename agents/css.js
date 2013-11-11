@@ -1,5 +1,5 @@
-var extend = require('./extend');
-var Core = require('./core');
+var Core = require("../lib/core");
+var extend = require("../lib/extend");
 
 var CSSRule = require('../models/CssRule');
 var CSSComputedStyleProperty = require('../models/CSSComputedStyleProperty');

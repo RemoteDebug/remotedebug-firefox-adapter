@@ -1,6 +1,6 @@
-var extend = require("./extend");
-var Core = require("./core");
-var DomNode = require("./dom.node");
+var Core = require("../lib/core");
+var extend = require("../lib/extend");
+var DomNode = require("../models/dom.node");
 
 function DOM(server, client, domNodeCache) {
     this.initialize(server, client);

@@ -1,6 +1,6 @@
-var extend = require('./extend');
-var Core = require('./core');
-var RemoteObject = require('./runtime.remoteobject');
+var Core = require("../lib/core");
+var extend = require("../lib/extend");
+var RemoteObject = require('../models/runtime.remoteobject');
 
 function Runtime(server, client) {
     this.initialize(server, client);
