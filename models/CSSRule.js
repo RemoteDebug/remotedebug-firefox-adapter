@@ -1,6 +1,6 @@
-var CSSStyle = require('./CSSStyle.js');
+var CSSStyle = require('./cssStyle');
 
-function CssRule(geckoRule) {
+function CSSRule(geckoRule) {
 
     console.log('geckoRule', geckoRule);
 
@@ -19,7 +19,7 @@ function CssRule(geckoRule) {
     //this._updateId(); Uncomment until StyleSheetId mapping is correct;
 }
 
-CssRule.prototype = {
+CSSRule.prototype = {
     _updateId: function(geckoRule) {
 
         var extractedId = geckoRule.actor.match(/conn(.*).domstylerule(.*)/)[2];
@@ -31,4 +31,4 @@ CssRule.prototype = {
     }
 };
 
-module.exports = CssRule;
+module.exports = CSSRule;

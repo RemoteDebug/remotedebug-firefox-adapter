@@ -3,7 +3,7 @@ var Q = require('q');
 var Client = require('./lib/client');
 var Server = require('./lib/server');
 var logger = require('./lib/logger');
-var DOMNodeCache = require('./lib/dom.node.cache');
+var DOMNodeCache = require('./lib/domNodeCache');
 
 // Agents
 var Info = require('./agents/info');

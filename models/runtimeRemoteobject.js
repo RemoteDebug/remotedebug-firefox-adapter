@@ -1,6 +1,6 @@
 var Q = require("q");
 
-function RemoteObject(type, value, objectId) {
+function RuntimeRemoteObject(type, value, objectId) {
     this.type = type;
     this.value = value;
     this.objectId = objectId;
@@ -10,7 +10,7 @@ function RemoteObject(type, value, objectId) {
     }
 }
 
-RemoteObject.prototype = {
+RuntimeRemoteObject.prototype = {
 
     _updateObjectId: function() {
         var extractedId = this.objectId.match(/conn(.*).obj(.*)/)[2];
@@ -19,4 +19,4 @@ RemoteObject.prototype = {
 
 };
 
-module.exports = RemoteObject;
+module.exports = RuntimeRemoteObject;

@@ -1,6 +1,6 @@
 var Q = require("q");
 
-function Node(geckoNode) {
+function DomNode(geckoNode) {
     this.geckoNode = geckoNode;
 
     this.nodeId = 0;
@@ -18,7 +18,7 @@ function Node(geckoNode) {
     this._updateNodeId();
 }
 
-Node.prototype = {
+DomNode.prototype = {
 
     build: function() {
         this._mapAttributes();
@@ -88,4 +88,4 @@ Node.prototype = {
 
 };
 
-module.exports = Node;
+module.exports = DomNode;

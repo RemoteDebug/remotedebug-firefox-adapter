@@ -1,6 +1,6 @@
 var Core = require("../lib/core");
 var extend = require("../lib/extend");
-var PageFrame = require("../models/page.frame");
+var PageFrame = require("../models/pageFrame");
 
 function Page(server, client) {
     this.initialize(server, client);
