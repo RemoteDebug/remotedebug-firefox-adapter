@@ -55,7 +55,7 @@ RemoteDebugProxy.prototype = {
         var whenServerStarted = this.server.start();
 
         Q.allSettled([whenClientConnected, whenServerStarted]).then(function() {
-            logger.info('RemoteDebug proxy is ready.');
+            logger.info('RemoteDebug Firefox bridge is ready.');
             logger.debug('-> visit http://localhost:' + this.options.server.port + '/json/');
         }.bind(this));
 
