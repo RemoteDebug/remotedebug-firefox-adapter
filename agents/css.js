@@ -3,6 +3,7 @@ var extend = require("../lib/extend");
 
 var CSSRule = require('../models/cssRule');
 var CSSComputedStyleProperty = require('../models/cssComputedStyleProperty');
+var CSSStylesheet= require('../models/cssStylesheet');
 
 function CSS(server, client, domNodeCache) {
     this.initialize(server, client);
@@ -72,17 +73,12 @@ CSS.prototype = extend(Core, {
 
             var data = stylesheets.map(function(stylesheet) {
 
-                return {
-                    stylesheetId: stylesheet.sheet.styleSheetIndex,
-                    origin: 'regular',
-                    disabled: stylesheet.sheet.disabled,
-                    sourceURL: stylesheet.sheet.href,
-                    title: stylesheet.sheet.title,
-                    frameId: 1,
-                    isInline: false,
-                    startLine: 0,
-                    startColumn: 0
-                };
+                var ss = new CSSStylesheet(stylesheet.sheet.styleSheetIndex);
+                ss.disabled = stylesheet.sheet.disabled;
+                ss.sourceURL = stylesheet.sheet.sourceURL;
+                ss.title = stylesheet.sheet.title;
+
+                return ss;
 
             }.bind(this));
 
@@ -90,12 +86,9 @@ CSS.prototype = extend(Core, {
                 headers: [data]
             });
 
-
         }.bind(this));
 
     },
-
-
 
     _formatProperties: function(properties) {
 
