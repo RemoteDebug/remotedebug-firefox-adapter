@@ -18,7 +18,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --debug bin/remotedebug-gecko-bridge.js"
+    "start": "node --debug bin/remotedebug-firefox-bridge.js"
   },
   "main": "proxy.js"
 }
