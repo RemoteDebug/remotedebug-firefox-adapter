@@ -61,7 +61,7 @@ DomNode.prototype = {
 
             var childDfd = [];
             var mapped = nodes.map(function(node) {
-                var n = new Node(node);
+                var n = new DomNode(node);
                 childDfd.push(n.build(node));
                 return n;
             });
