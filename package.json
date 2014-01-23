@@ -10,7 +10,7 @@
     "ws": "~0.4.31",
     "express": "~3.4.0",
     "node.extend": "~1.0.8",
-    "colors": "~0.6.2"
+    "winston": "~0.7.2"
   },
   "directories": {
     "bin": "bin"
