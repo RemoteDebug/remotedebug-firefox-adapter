@@ -68,8 +68,6 @@ DOM.prototype = extend(Core, {
 
             node.geckoNode.setAttribute(name, value, function() {});
         });
-
-        this.log('setAttributesAsText', request);
     }
 
 });
