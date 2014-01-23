@@ -15,6 +15,7 @@
   "directories": {
     "bin": "bin"
   },
+  "repository": "https://github.com/auchenberg/remotedebug-firefox-bridge.git",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
