@@ -29,6 +29,8 @@ const defaultOptions = {
 
 function RemoteDebugProxy(options) {
 
+    logger.info('remotedebug.initialize');
+
     this.options = options || defaultOptions;
 
     this.server = new Server(this.options);
