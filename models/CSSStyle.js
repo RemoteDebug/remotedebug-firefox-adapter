@@ -1,4 +1,4 @@
-var CSSProperty = require('./cssProperty');
+var CSSProperty = require('./CSSProperty');
 
 function CSSStyle(cssText) {
 

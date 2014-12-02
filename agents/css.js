@@ -1,8 +1,8 @@
 var Core = require("../lib/core");
 var extend = require("../lib/extend");
 
-var CSSRule = require('../models/cssRule');
-var CSSComputedStyleProperty = require('../models/cssComputedStyleProperty');
+var CSSRule = require('../models/CSSRule');
+var CSSComputedStyleProperty = require('../models/CSSComputedStyleProperty');
 var CSSStylesheet= require('../models/cssStylesheet');
 
 function CSS(server, client, domNodeCache) {
