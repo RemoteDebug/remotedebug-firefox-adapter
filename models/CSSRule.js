@@ -1,4 +1,4 @@
-var CSSStyle = require('./cssStyle');
+var CSSStyle = require('./CSSStyle');
 
 function CSSRule(geckoRule) {
 
