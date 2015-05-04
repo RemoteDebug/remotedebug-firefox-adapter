@@ -7,12 +7,16 @@ function Page(server, client) {
     this.server.on("Page.enable", this.enable.bind(this));
     this.server.on("Page.navigate", this.navigate.bind(this));
     this.server.on("Page.reload", this.reload.bind(this));
+    this.server.on("Page.canScreencast", this.canScreencast.bind(this));
 }
 
 Page.prototype = extend(Core, {
 
     enable: function(request) {
         request.reply(true);
+    canScreencast: function(request) {
+        request.reply(false);
+    },
     reload: function(request) {
         var page = this.client.getPage(request.data.pageId);
         page.reload();
