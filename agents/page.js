@@ -9,6 +9,7 @@ function Page(server, client) {
     this.server.on("Page.reload", this.reload.bind(this));
     this.server.on("Page.canScreencast", this.canScreencast.bind(this));
     this.server.on("Page.canEmulate", this.canEmulate.bind(this));
+    this.server.on("Page.hasTouchInputs", this.hasTouchInputs.bind(this));
 }
 
 Page.prototype = extend(Core, {
@@ -22,6 +23,11 @@ Page.prototype = extend(Core, {
     canScreencast: function(request) {
         request.reply(false);
     },
+
+    hasTouchInputs: function(request) {
+        request.reply(false);
+    },    
+
     reload: function(request) {
         var page = this.client.getPage(request.data.pageId);
         page.reload();
