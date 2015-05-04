@@ -9,7 +9,6 @@ function Worker(server, client) {
 Worker.prototype = extend(Core, {
 
     canInspectWorkers: function(request) {
-
         request.reply(false);
     }
 

@@ -34,7 +34,6 @@ Page.prototype = extend(Core, {
     },
 
     navigate: function(request) {
-
         var page = this.client.getPage(request.data.pageId);
         var url = request.data.params.url;
 
@@ -49,10 +48,7 @@ Page.prototype = extend(Core, {
                     timestamp: (new Date).getTime()
                 });
             }.bind(this), 2000);
-
-
         });
-
     }
 
 });

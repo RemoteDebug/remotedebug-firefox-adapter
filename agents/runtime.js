@@ -7,7 +7,6 @@ function Runtime(server, client) {
     this.server.on('Runtime.enable', this.enable.bind(this));
     this.server.on('Runtime.evaluate', this.evaluate.bind(this));
     this.server.on('Runtime.callFunctionOn', this.callFunctionOn.bind(this));
-
 }
 
 Runtime.prototype = extend(Core, {
