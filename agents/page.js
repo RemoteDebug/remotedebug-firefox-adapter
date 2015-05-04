@@ -8,12 +8,17 @@ function Page(server, client) {
     this.server.on("Page.navigate", this.navigate.bind(this));
     this.server.on("Page.reload", this.reload.bind(this));
     this.server.on("Page.canScreencast", this.canScreencast.bind(this));
+    this.server.on("Page.canEmulate", this.canEmulate.bind(this));
 }
 
 Page.prototype = extend(Core, {
 
     enable: function(request) {
         request.reply(true);
+    canEmulate: function(request) {
+        request.reply(false);
+    },
+
     canScreencast: function(request) {
         request.reply(false);
     },
