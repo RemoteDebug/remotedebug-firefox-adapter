@@ -6,12 +6,16 @@ function Page(server, client) {
     this.initialize(server, client);
     this.server.on("Page.enable", this.enable.bind(this));
     this.server.on("Page.navigate", this.navigate.bind(this));
+    this.server.on("Page.reload", this.reload.bind(this));
 }
 
 Page.prototype = extend(Core, {
 
     enable: function(request) {
         request.reply(true);
+    reload: function(request) {
+        var page = this.client.getPage(request.data.pageId);
+        page.reload();
     },
 
     navigate: function(request) {
