@@ -1,17 +1,15 @@
-var Core = require("../lib/core");
-var extend = require("../lib/extend");
+var util = require('util')
+var Core = require('../lib/core')
 
-function Console(server, client) {
-    this.initialize(server, client);
-    this.server.on('Console.enable', this.enable.bind(this));
+function Console (server, client) {
+  this.initialize(server, client)
+  this.server.on('Console.enable', this.enable.bind(this))
 }
 
-Console.prototype = extend(Core, {
+util.inherits(Console, Core);
 
-    enable: function(request) {
-        request.reply(true);
-    }
+Console.prototype.enable = function (req) {
+  req.reply(true)
+}
 
-});
-
-module.exports = Console;
+module.exports = Console

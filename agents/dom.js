@@ -1,75 +1,101 @@
-var Core = require("../lib/core");
-var extend = require("../lib/extend");
-var DomNode = require("../models/domNode");
+var util = require('util')
+var Core = require('../lib/core')
+var DomNode = require('../objects/domNode')
 
-function DOM(server, client, domNodeCache) {
-    this.initialize(server, client);
+function DOM (server, client, domNodeCache) {
+  this.initialize(server, client)
 
-    this.server.on("DOM.getDocument", this.getDocument.bind(this));
-    this.server.on("DOM.highlightNode", this.highlightNode.bind(this));
-    this.server.on("DOM.hideHighlight", this.hideHighlight.bind(this));
-    this.server.on("DOM.setAttributesAsText", this.setAttributesAsText.bind(this));
+  this.server.on('DOM.getDocument', this.getDocument.bind(this))
+  this.server.on('DOM.highlightNode', this.highlightNode.bind(this))
+  this.server.on('DOM.hideHighlight', this.hideHighlight.bind(this))
+  this.server.on('DOM.setAttributesAsText', this.setAttributesAsText.bind(this))
+  this.server.on('DOM.getAttributes', this.getAttributes.bind(this))
+  this.server.on('DOM.markUndoableState', this.markUndoableState.bind(this))
+  this.server.on('DOM.setInspectedNode', this.setInspectedNode.bind(this))
 
-    this.domNodeCache = domNodeCache;
+  this.domNodeCache = domNodeCache
 }
 
-DOM.prototype = extend(Core, {
+util.inherits(DOM, Core)
 
-    getDocument: function(request) {
+DOM.prototype.getDocument = function (request) {
+    var page = this.client.getPage(request.data.pageId)
 
-        var page = this.client.getPage(request.data.pageId);
+    page.DOM.document(function (err, elmDocument) {
+      if (err) throw new Error(err)
 
-        page.DOM.document(function(err, elmDocument) {
+      var node = new DomNode(elmDocument)
+      node.build().then(function () {
+        this.domNodeCache.buildPageDomIndex(request.data.pageId, node)
 
-            var node = new DomNode(elmDocument);
-            node.build().then(function() {
+        var res = {
+          root: node.toJSON()
+        }
 
-                this.domNodeCache.buildPageDomIndex(request.data.pageId, node);
+        request.reply(res)
 
-                var res = {
-                    root: node.toJSON()
-                };
+      }.bind(this))
 
-                request.reply(res);
+    }.bind(this))
+  }
 
-            }.bind(this));
+DOM.prototype.highlightNode = function (request) {
+  var node = this.domNodeCache.getNode(request.data.pageId, request.data.params.nodeId)
+  if (!node) return
 
-        }.bind(this));
-    },
+  console.log('node.geckoNode', node.geckoNode)
 
-    highlightNode: function(request) {
-        var node = this.domNodeCache.getNode(request.data.pageId, request.data.params.nodeId);
+  node.geckoNode.highlight(function () {
 
-        node.geckoNode.highlight(function(){});
-    },
+  })
+}
 
-    hideHighlight: function(request) {
-        var page = this.client.getPage(request.data.pageId);
-        page.DOM.document(function(err, elmDocument) {
-            elmDocument.unhighlight(function(){});
-        });
-    },
+DOM.prototype.hideHighlight = function (request) {
+  var page = this.client.getPage(request.data.pageId)
+  page.DOM.document(function (err, elmDocument) {
+    if (!err) {
+      elmDocument.unhighlight(function () {})
+    }
+  })
+}
 
-    setAttributesAsText: function(request) {
-        var node = this.domNodeCache.getNode(request.data.pageId, request.data.params.nodeId);
-        var text = request.data.params.text;
+DOM.prototype.setAttributesAsText = function (request) {
+  var node = this.domNodeCache.getNode(request.data.pageId, request.data.params.nodeId)
+  var text = request.data.params.text
 
-        // TODO: Improve parser - really optimistic
-        text.split(' ').forEach(function(pair) {
+  if (!node) return
 
-            var set = pair.split('=');
+  // TODO: Improve parser - really optimistic
+  text.split(' ').forEach(function (pair) {
+    var set = pair.split('=')
 
-            if(set.length !== 2) {
-                return;
-            }
-
-            var name = set[0].trim().replace('"', '');
-            var value = set[1].trim().replace('"', '');
-
-            node.geckoNode.setAttribute(name, value, function() {});
-        });
+    if (set.length !== 2) {
+      return
     }
 
-});
+    var name = set[0].trim().replace('"', '')
+    var value = set[1].trim().replace('"', '')
 
-module.exports = DOM;
+    node.geckoNode.setAttribute(name, value, function () {})
+  })
+}
+
+DOM.prototype.getAttributes = function (req) {
+  req.reply({
+
+  })
+}
+
+DOM.prototype.markUndoableState = function (req) {
+  req.reply({
+
+  })
+},
+
+DOM.prototype.setInspectedNode = function (req) {
+  req.reply({
+
+  })
+}
+
+module.exports = DOM

@@ -1,22 +1,20 @@
-var Core = require("../lib/core");
-var extend = require("../lib/extend");
+var util = require('util')
+var Core = require('../lib/core')
 
-function Network(server, client) {
-    this.initialize(server, client);
-    this.server.on("Network.enable", this.enable.bind(this));
-    this.server.on("Network.setCacheDisabled", this.setCacheDisabled.bind(this));
+function Network (server, client) {
+  this.initialize(server, client)
+  this.server.on('Network.enable', this.enable.bind(this))
+  this.server.on('Network.setCacheDisabled', this.setCacheDisabled.bind(this))
 }
 
-Network.prototype = extend(Core, {
+util.inherits(Network, Core)
 
-    enable: function(request) {
-        request.reply(true);
-    },
+Network.prototype.enable = function (req) {
+  req.reply(true)
+}
 
-    setCacheDisabled: function(request) {
-        request.reply(false);
-    },
+Network.prototype.setCacheDisabled = function (req) {
+  req.reply(false)
+}
 
-});
-
-module.exports = Network;
+module.exports = Network

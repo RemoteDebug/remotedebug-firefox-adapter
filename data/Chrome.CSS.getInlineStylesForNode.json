@@ -1,0 +1,62 @@
+{
+  "id": 45,
+  "result": {
+    "inlineStyle": {
+      "cssProperties": [{
+        "name": "background",
+        "value": "red",
+        "text": "background: red;",
+        "range": {
+          "startLine": 1,
+          "startColumn": 4,
+          "endLine": 1,
+          "endColumn": 20
+        },
+        "implicit": false,
+        "disabled": false
+      }, {
+        "name": "background-image",
+        "value": "initial"
+      }, {
+        "name": "background-repeat-x",
+        "value": "initial"
+      }, {
+        "name": "background-repeat-y",
+        "value": "initial"
+      }, {
+        "name": "background-attachment",
+        "value": "initial"
+      }, {
+        "name": "background-position-x",
+        "value": "initial"
+      }, {
+        "name": "background-position-y",
+        "value": "initial"
+      }, {
+        "name": "background-origin",
+        "value": "initial"
+      }, {
+        "name": "background-clip",
+        "value": "initial"
+      }, {
+        "name": "background-color",
+        "value": "red"
+      }, {
+        "name": "background-size",
+        "value": "initial"
+      }],
+      "shorthandEntries": [{
+        "name": "background",
+        "value": "red"
+      }],
+      "styleSheetId": "25",
+      "range": {
+        "startLine": 0,
+        "startColumn": 0,
+        "endLine": 2,
+        "endColumn": 0
+      },
+      "cssText": "\n    background: red;\n"
+    }
+  }
+}

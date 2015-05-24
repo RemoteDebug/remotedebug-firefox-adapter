@@ -1,56 +1,56 @@
-var Core = require("../lib/core");
-var extend = require("../lib/extend");
-var PageFrame = require("../models/pageFrame");
+var util = require('util')
+var Core = require('../lib/core')
+var PageFrame = require('../objects/pageFrame')
 
-function Page(server, client) {
-    this.initialize(server, client);
-    this.server.on("Page.enable", this.enable.bind(this));
-    this.server.on("Page.navigate", this.navigate.bind(this));
-    this.server.on("Page.reload", this.reload.bind(this));
-    this.server.on("Page.canScreencast", this.canScreencast.bind(this));
-    this.server.on("Page.canEmulate", this.canEmulate.bind(this));
-    this.server.on("Page.hasTouchInputs", this.hasTouchInputs.bind(this));
+function Page (server, client) {
+  this.initialize(server, client)
+  this.server.on('Page.enable', this.enable.bind(this))
+  this.server.on('Page.navigate', this.navigate.bind(this))
+  this.server.on('Page.reload', this.reload.bind(this))
+  this.server.on('Page.canScreencast', this.canScreencast.bind(this))
+  this.server.on('Page.canEmulate', this.canEmulate.bind(this))
+  this.server.on('Page.hasTouchInputs', this.hasTouchInputs.bind(this))
 }
 
-Page.prototype = extend(Core, {
+util.inherits(Page, Core)
 
-    enable: function(request) {
-        request.reply(true);
-    canEmulate: function(request) {
-        request.reply(false);
-    },
+Page.prototype.enable = function (request) {
+  request.reply(true)
+}
 
-    canScreencast: function(request) {
-        request.reply(false);
-    },
+Page.prototype.canEmulate = function (request) {
+  request.reply(false)
+}
 
-    hasTouchInputs: function(request) {
-        request.reply(false);
-    },    
+Page.prototype.canScreencast = function (request) {
+  request.reply(true)
+}
 
-    reload: function(request) {
-        var page = this.client.getPage(request.data.pageId);
-        page.reload();
-    },
+Page.prototype.hasTouchInputs = function (request) {
+  request.reply(false)
+}
 
-    navigate: function(request) {
-        var page = this.client.getPage(request.data.pageId);
-        var url = request.data.params.url;
+Page.prototype.reload = function (request) {
+  var page = this.client.getPage(request.data.pageId)
+  page.reload()
+}
 
-        page.navigateTo(url, function() {
-            request.sendNotification('Page.frameNavigated', {
-                frame: new PageFrame(url)
-            });
+Page.prototype.navigate = function (request) {
+  var page = this.client.getPage(request.data.pageId)
+  var url = request.data.params.url
 
-            setTimeout(function() {
-                // TODO: This event should be fired, whne we get told from Firefox, but I don't know how to listen to that event yet.
-                request.sendNotification('Page.loadEventFired', {
-                    timestamp: (new Date).getTime()
-                });
-            }.bind(this), 2000);
-        });
-    }
+  page.navigateTo(url, function () {
+    request.sendNotification('Page.frameNavigated', {
+      frame: new PageFrame(url)
+    })
 
-});
+    setTimeout(function () {
+      // TODO: This event should be fired, whne we get told from Firefox, but I don't know how to listen to that event yet.
+      request.sendNotification('Page.loadEventFired', {
+        timestamp: new Date().getTime()
+      })
+    }, 2000)
+  })
+}
 
-module.exports = Page;
+module.exports = Page

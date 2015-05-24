@@ -1,7 +1,7 @@
 {
-  "name": "remotedebug-gecko-bridge",
+  "name": "remotedebug-firefox-adaptor",
   "version": "0.0.1",
-  "description": "RemoteDebug Firefox bridge",
+  "description": "RemoteDebug Firefox Adaptor",
   "author": "Kenneth Auchenberg",
   "license": "MIT",
   "dependencies": {
@@ -12,14 +12,10 @@
     "node.extend": "~1.0.8",
     "winston": "~0.7.2"
   },
-  "directories": {
-    "bin": "bin"
-  },
-  "repository": "https://github.com/auchenberg/remotedebug-firefox-bridge.git",
-  "devDependencies": {},
+  "main": "index.js",
+  "repository": "https://github.com/auchenberg/remotedebug-firefox-adaptor.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --debug bin/remotedebug-firefox-bridge.js"
-  },
-  "main": "proxy.js"
+    "start": "node bin/adaptor.js"
+  }
 }

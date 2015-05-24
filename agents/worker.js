@@ -1,17 +1,14 @@
-var Core = require("../lib/core");
-var extend = require("../lib/extend");
+var util = require('util')
+var Core = require('../lib/core')
 
-function Worker(server, client) {
-    this.initialize(server, client);
-    this.server.on("Worker.canInspectWorkers", this.canInspectWorkers.bind(this));
+function Worker (server, client) {
+  this.initialize(server, client)
+  this.server.on('Worker.canInspectWorkers', this.canInspectWorkers.bind(this))
+}
+util.inherits(Worker, Core);
+
+Worker.prototype.canInspectWorkers = function (req) {
+  req.reply(false)
 }
 
-Worker.prototype = extend(Core, {
-
-    canInspectWorkers: function(request) {
-        request.reply(false);
-    }
-
-});
-
-module.exports = Worker;
+module.exports = Worker

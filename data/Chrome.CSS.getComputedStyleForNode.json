@@ -1,14 +1,42 @@
 {
+    "id": 47,
     "result": {
         "computedStyle": [{
+            "name": "animation-delay",
+            "value": "0s"
+        }, {
+            "name": "animation-direction",
+            "value": "normal"
+        }, {
+            "name": "animation-duration",
+            "value": "0s"
+        }, {
+            "name": "animation-fill-mode",
+            "value": "none"
+        }, {
+            "name": "animation-iteration-count",
+            "value": "1"
+        }, {
+            "name": "animation-name",
+            "value": "none"
+        }, {
+            "name": "animation-play-state",
+            "value": "running"
+        }, {
+            "name": "animation-timing-function",
+            "value": "ease"
+        }, {
             "name": "background-attachment",
             "value": "scroll"
+        }, {
+            "name": "background-blend-mode",
+            "value": "normal"
         }, {
             "name": "background-clip",
             "value": "border-box"
         }, {
             "name": "background-color",
-            "value": "rgba(0, 0, 0, 0)"
+            "value": "rgb(255, 0, 0)"
         }, {
             "name": "background-image",
             "value": "none"
@@ -26,7 +54,7 @@
             "value": "auto"
         }, {
             "name": "border-bottom-color",
-            "value": "rgb(34, 34, 34)"
+            "value": "rgb(0, 0, 0)"
         }, {
             "name": "border-bottom-left-radius",
             "value": "0px"
@@ -59,7 +87,7 @@
             "value": "1"
         }, {
             "name": "border-left-color",
-            "value": "rgb(34, 34, 34)"
+            "value": "rgb(0, 0, 0)"
         }, {
             "name": "border-left-style",
             "value": "none"
@@ -68,7 +96,7 @@
             "value": "0px"
         }, {
             "name": "border-right-color",
-            "value": "rgb(34, 34, 34)"
+            "value": "rgb(0, 0, 0)"
         }, {
             "name": "border-right-style",
             "value": "none"
@@ -77,7 +105,7 @@
             "value": "0px"
         }, {
             "name": "border-top-color",
-            "value": "rgb(34, 34, 34)"
+            "value": "rgb(0, 0, 0)"
         }, {
             "name": "border-top-left-radius",
             "value": "0px"
@@ -110,7 +138,7 @@
             "value": "auto"
         }, {
             "name": "color",
-            "value": "rgb(34, 34, 34)"
+            "value": "rgb(0, 0, 0)"
         }, {
             "name": "cursor",
             "value": "auto"
@@ -128,10 +156,16 @@
             "value": "none"
         }, {
             "name": "font-family",
-            "value": "ff-tisa-web-pro, serif"
+            "value": "Times"
+        }, {
+            "name": "font-kerning",
+            "value": "auto"
         }, {
             "name": "font-size",
-            "value": "18px"
+            "value": "16px"
+        }, {
+            "name": "font-stretch",
+            "value": "normal"
         }, {
             "name": "font-style",
             "value": "normal"
@@ -139,13 +173,19 @@
             "name": "font-variant",
             "value": "normal"
         }, {
+            "name": "font-variant-ligatures",
+            "value": "normal"
+        }, {
             "name": "font-weight",
             "value": "normal"
         }, {
             "name": "height",
-            "value": "4515.46875px"
+            "value": "762px"
         }, {
             "name": "image-rendering",
+            "value": "auto"
+        }, {
+            "name": "isolation",
             "value": "auto"
         }, {
             "name": "left",
@@ -155,7 +195,7 @@
             "value": "normal"
         }, {
             "name": "line-height",
-            "value": "27.599998474121094px"
+            "value": "normal"
         }, {
             "name": "list-style-image",
             "value": "none"
@@ -167,16 +207,16 @@
             "value": "disc"
         }, {
             "name": "margin-bottom",
-            "value": "0px"
+            "value": "8px"
         }, {
             "name": "margin-left",
-            "value": "0px"
+            "value": "8px"
         }, {
             "name": "margin-right",
-            "value": "0px"
+            "value": "8px"
         }, {
             "name": "margin-top",
-            "value": "0px"
+            "value": "8px"
         }, {
             "name": "max-height",
             "value": "none"
@@ -189,6 +229,9 @@
         }, {
             "name": "min-width",
             "value": "0px"
+        }, {
+            "name": "mix-blend-mode",
+            "value": "normal"
         }, {
             "name": "object-fit",
             "value": "fill"
@@ -203,7 +246,7 @@
             "value": "auto"
         }, {
             "name": "outline-color",
-            "value": "rgb(34, 34, 34)"
+            "value": "rgb(0, 0, 0)"
         }, {
             "name": "outline-offset",
             "value": "0px"
@@ -248,7 +291,7 @@
             "value": "auto"
         }, {
             "name": "position",
-            "value": "relative"
+            "value": "static"
         }, {
             "name": "resize",
             "value": "none"
@@ -269,7 +312,7 @@
             "value": "start"
         }, {
             "name": "text-decoration",
-            "value": "none solid rgb(34, 34, 34)"
+            "value": "none"
         }, {
             "name": "text-indent",
             "value": "0px"
@@ -289,8 +332,8 @@
             "name": "top",
             "value": "auto"
         }, {
-            "name": "touch-action-delay",
-            "value": "script"
+            "name": "touch-action",
+            "value": "auto"
         }, {
             "name": "transition-delay",
             "value": "0s"
@@ -317,10 +360,13 @@
             "value": "normal"
         }, {
             "name": "widows",
-            "value": "auto"
+            "value": "1"
         }, {
             "name": "width",
-            "value": "1440px"
+            "value": "677px"
+        }, {
+            "name": "will-change",
+            "value": "auto"
         }, {
             "name": "word-break",
             "value": "normal"
@@ -337,34 +383,10 @@
             "name": "zoom",
             "value": "1"
         }, {
-            "name": "-webkit-animation-delay",
-            "value": "0s"
-        }, {
-            "name": "-webkit-animation-direction",
-            "value": "normal"
-        }, {
-            "name": "-webkit-animation-duration",
-            "value": "0s"
-        }, {
-            "name": "-webkit-animation-fill-mode",
-            "value": "none"
-        }, {
-            "name": "-webkit-animation-iteration-count",
-            "value": "1"
-        }, {
-            "name": "-webkit-animation-name",
-            "value": "none"
-        }, {
-            "name": "-webkit-animation-play-state",
-            "value": "running"
-        }, {
-            "name": "-webkit-animation-timing-function",
-            "value": "ease"
-        }, {
             "name": "-webkit-appearance",
             "value": "none"
         }, {
-            "name": "-webkit-backface-visibility",
+            "name": "backface-visibility",
             "value": "visible"
         }, {
             "name": "-webkit-background-clip",
@@ -375,12 +397,6 @@
         }, {
             "name": "-webkit-background-origin",
             "value": "padding-box"
-        }, {
-            "name": "-webkit-background-size",
-            "value": "auto"
-        }, {
-            "name": "-webkit-border-fit",
-            "value": "border"
         }, {
             "name": "-webkit-border-horizontal-spacing",
             "value": "0px"
@@ -421,9 +437,6 @@
             "name": "-webkit-box-reflect",
             "value": "none"
         }, {
-            "name": "-webkit-box-shadow",
-            "value": "none"
-        }, {
             "name": "-webkit-clip-path",
             "value": "none"
         }, {
@@ -436,20 +449,14 @@
             "name": "-webkit-column-break-inside",
             "value": "auto"
         }, {
-            "name": "-webkit-column-axis",
-            "value": "auto"
-        }, {
             "name": "-webkit-column-count",
             "value": "auto"
         }, {
             "name": "-webkit-column-gap",
             "value": "normal"
         }, {
-            "name": "-webkit-column-progression",
-            "value": "normal"
-        }, {
             "name": "-webkit-column-rule-color",
-            "value": "rgb(34, 34, 34)"
+            "value": "rgb(0, 0, 0)"
         }, {
             "name": "-webkit-column-rule-style",
             "value": "none"
@@ -467,13 +474,13 @@
             "value": "none"
         }, {
             "name": "align-content",
-            "value": "stretch"
+            "value": "start"
         }, {
             "name": "align-items",
-            "value": "stretch"
+            "value": "start"
         }, {
             "name": "align-self",
-            "value": "stretch"
+            "value": "start"
         }, {
             "name": "flex-basis",
             "value": "auto"
@@ -491,25 +498,16 @@
             "value": "nowrap"
         }, {
             "name": "justify-content",
-            "value": "flex-start"
-        }, {
-            "name": "-webkit-font-kerning",
-            "value": "auto"
+            "value": "start"
         }, {
             "name": "-webkit-font-smoothing",
             "value": "auto"
-        }, {
-            "name": "-webkit-font-variant-ligatures",
-            "value": "normal"
         }, {
             "name": "-webkit-highlight",
             "value": "none"
         }, {
             "name": "-webkit-hyphenate-character",
             "value": "auto"
-        }, {
-            "name": "-webkit-line-align",
-            "value": "none"
         }, {
             "name": "-webkit-line-box-contain",
             "value": "block inline replaced"
@@ -520,14 +518,8 @@
             "name": "-webkit-line-clamp",
             "value": "none"
         }, {
-            "name": "-webkit-line-grid",
-            "value": "none"
-        }, {
-            "name": "-webkit-line-snap",
-            "value": "none"
-        }, {
             "name": "-webkit-locale",
-            "value": "en"
+            "value": "auto"
         }, {
             "name": "-webkit-margin-before-collapse",
             "value": "collapse"
@@ -577,17 +569,26 @@
             "name": "order",
             "value": "0"
         }, {
-            "name": "-webkit-perspective",
+            "name": "perspective",
             "value": "none"
         }, {
-            "name": "-webkit-perspective-origin",
-            "value": "720px 2257.734375px"
+            "name": "perspective-origin",
+            "value": "338.5px 381px"
         }, {
             "name": "-webkit-print-color-adjust",
             "value": "economy"
         }, {
             "name": "-webkit-rtl-ordering",
             "value": "logical"
+        }, {
+            "name": "shape-outside",
+            "value": "none"
+        }, {
+            "name": "shape-image-threshold",
+            "value": "0"
+        }, {
+            "name": "shape-margin",
+            "value": "0px"
         }, {
             "name": "-webkit-tap-highlight-color",
             "value": "rgba(0, 0, 0, 0.4)"
@@ -599,7 +600,7 @@
             "value": "none"
         }, {
             "name": "-webkit-text-emphasis-color",
-            "value": "rgb(34, 34, 34)"
+            "value": "rgb(0, 0, 0)"
         }, {
             "name": "-webkit-text-emphasis-position",
             "value": "over"
@@ -608,7 +609,7 @@
             "value": "none"
         }, {
             "name": "-webkit-text-fill-color",
-            "value": "rgb(34, 34, 34)"
+            "value": "rgb(0, 0, 0)"
         }, {
             "name": "-webkit-text-orientation",
             "value": "vertical-right"
@@ -617,31 +618,19 @@
             "value": "none"
         }, {
             "name": "-webkit-text-stroke-color",
-            "value": "rgb(34, 34, 34)"
+            "value": "rgb(0, 0, 0)"
         }, {
             "name": "-webkit-text-stroke-width",
             "value": "0px"
         }, {
-            "name": "-webkit-transform",
+            "name": "transform",
             "value": "none"
         }, {
-            "name": "-webkit-transform-origin",
-            "value": "720px 2257.734375px"
+            "name": "transform-origin",
+            "value": "338.5px 381px"
         }, {
-            "name": "-webkit-transform-style",
+            "name": "transform-style",
             "value": "flat"
-        }, {
-            "name": "-webkit-transition-delay",
-            "value": "0s"
-        }, {
-            "name": "-webkit-transition-duration",
-            "value": "0s"
-        }, {
-            "name": "-webkit-transition-property",
-            "value": "all"
-        }, {
-            "name": "-webkit-transition-timing-function",
-            "value": "ease"
         }, {
             "name": "-webkit-user-drag",
             "value": "auto"
@@ -689,16 +678,16 @@
             "value": "1"
         }, {
             "name": "color-interpolation",
-            "value": "srgb"
+            "value": "sRGB"
         }, {
             "name": "color-interpolation-filters",
-            "value": "linearrgb"
+            "value": "linearRGB"
         }, {
             "name": "color-rendering",
             "value": "auto"
         }, {
             "name": "fill",
-            "value": "#000000"
+            "value": "rgb(0, 0, 0)"
         }, {
             "name": "fill-opacity",
             "value": "1"
@@ -728,7 +717,7 @@
             "value": "none"
         }, {
             "name": "stroke-dashoffset",
-            "value": "0"
+            "value": "0px"
         }, {
             "name": "stroke-linecap",
             "value": "butt"
@@ -743,19 +732,16 @@
             "value": "1"
         }, {
             "name": "stroke-width",
-            "value": "1"
+            "value": "1px"
         }, {
             "name": "alignment-baseline",
             "value": "auto"
         }, {
             "name": "baseline-shift",
-            "value": "baseline"
+            "value": "0px"
         }, {
             "name": "dominant-baseline",
             "value": "auto"
-        }, {
-            "name": "kerning",
-            "value": "0"
         }, {
             "name": "text-anchor",
             "value": "start"
@@ -771,7 +757,30 @@
         }, {
             "name": "vector-effect",
             "value": "none"
+        }, {
+            "name": "paint-order",
+            "value": "fill stroke markers"
+        }, {
+            "name": "cx",
+            "value": "0px"
+        }, {
+            "name": "cy",
+            "value": "0px"
+        }, {
+            "name": "x",
+            "value": "0px"
+        }, {
+            "name": "y",
+            "value": "0px"
+        }, {
+            "name": "r",
+            "value": "0px"
+        }, {
+            "name": "rx",
+            "value": "0px"
+        }, {
+            "name": "ry",
+            "value": "0px"
         }]
-    },
-    "id": 1
+    }
 }

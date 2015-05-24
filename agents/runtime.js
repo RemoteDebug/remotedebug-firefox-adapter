@@ -1,107 +1,96 @@
-var Core = require("../lib/core");
-var extend = require("../lib/extend");
-var RemoteObject = require('../models/runtimeRemoteobject');
+var util = require('util')
+var Core = require('../lib/core')
+var RemoteObject = require('../objects/runtimeRemoteobject')
 
-function Runtime(server, client) {
-    this.initialize(server, client);
-    this.server.on('Runtime.enable', this.enable.bind(this));
-    this.server.on('Runtime.evaluate', this.evaluate.bind(this));
-    this.server.on('Runtime.callFunctionOn', this.callFunctionOn.bind(this));
+function Runtime (server, client) {
+  this.initialize(server, client)
+  this.server.on('Runtime.enable', this.enable.bind(this))
+  this.server.on('Runtime.evaluate', this.evaluate.bind(this))
+  this.server.on('Runtime.callFunctionOn', this.callFunctionOn.bind(this))
 }
 
-Runtime.prototype = extend(Core, {
+util.inherits(Runtime, Core)
 
-    enable: function(request) {
-        request.reply(true);
-    },
+Runtime.prototype.enable = function (req) {
+  req.reply(true)
+},
 
-    evaluate: function(request) {
+Runtime.prototype.evaluate = function (request) {
+  var page = this.client.getPage(request.data.pageId)
+  var expression = request.data.params.expression
 
-        var page = this.client.getPage(request.data.pageId);
-        var expression = request.data.params.expression;
+  // Workaround for Adobe Brackets.
+  if (expression === 'window.open(\'\', \'_self\').close()') {
+    request.reply({
+      result: {
+        value: undefined,
+        type: 'undefined'
+      },
+      wasThrown: false
+    })
 
-        // Workaround for Adobe Brackets.
-        if(expression === 'window.open(\'\', \'_self\').close();') {
-            request.reply({
-                result: {
-                    value: undefined,
-                    type: 'undefined'
-                },
-                wasThrown: false
-            });
+    return
+  }
 
-            return;
-        }
-
-        page.Console.evaluateJS(expression, function(err, data) {
-
-            if(err) {
-                return this.error(err, data);
-            }
-
-            if(typeof data.result.obj !== 'object') {
-
-                request.reply({
-                    result: new RemoteObject(typeof(data.result), data.result),
-                    wasThrown: false
-                });
-
-            } else {
-
-                var objectId = data.result.obj.actor;
-                request.reply({
-                    result: new RemoteObject('null', null, objectId),
-                    wasThrown: false
-                });
-
-            }
-
-            // if (data.exception) {
-            //     return request.sendNotification('Console.messageAdded', {
-            //         message : {
-            //             level: 'error',
-            //             text: data.exceptionMessage
-            //         }
-            //     });
-            // }
-
-            // if (data.result) {
-            //     return request.sendNotification('Console.messageAdded', {
-            //         message : {
-            //             level: 'log',
-            //             parameter: [{
-            //                 value: data.result.obj
-            //             }]
-            //         }
-            //     });
-            // }
-
-
-        }.bind(this));
-    },
-
-    callFunctionOn: function(request) {
-
-        var page = this.client.getPage(request.data.pageId);
-
-        var functionDeclaration = request.data.params.functionDeclaration;
-        var argumentsAsString = request.data.params.arguments ? request.data.params.arguments.map(function(argument){
-            return JSON.stringify(argument.value);
-        }).join(', ') : '';
-
-        var functionCall = functionDeclaration + '(' + argumentsAsString + ')';
-
-        page.Console.evaluateJS(functionCall, function(err, data) {
-
-            request.reply({
-                result: new RemoteObject(typeof(data.result), data.result),
-                wasThrown: false
-            });
-
-        }.bind(this));
-
+  page.Console.evaluateJS(expression, function (err, data) {
+    if (err) {
+      return this.error(err, data)
     }
 
-});
+    if (typeof data.result.obj !== 'object') {
+      request.reply({
+        result: new RemoteObject(typeof data.result, data.result),
+        wasThrown: false
+      })
+    } else {
+      var objectId = data.result.obj.actor
+      request.reply({
+        result: new RemoteObject('null', null, objectId),
+        wasThrown: false
+      })
+    }
 
-module.exports = Runtime;
+    // if (data.exception) {
+    //     return request.sendNotification('Console.messageAdded', {
+    //         message : {
+    //             level: 'error',
+    //             text: data.exceptionMessage
+    //         }
+    //     })
+    // }
+
+    // if (data.result) {
+    //     return request.sendNotification('Console.messageAdded', {
+    //         message : {
+    //             level: 'log',
+    //             parameter: [{
+    //                 value: data.result.obj
+    //             }]
+    //         }
+    //     })
+    // }
+  }.bind(this))
+
+}
+
+Runtime.prototype.callFunctionOn = function (request) {
+  var page = this.client.getPage(request.data.pageId)
+
+  var functionDeclaration = request.data.params.functionDeclaration
+  var argumentsAsString = request.data.params.arguments ? request.data.params.arguments.map(function (argument) {
+    return JSON.stringify(argument.value)
+  }).join(', ') : ''
+
+  var functionCall = functionDeclaration + '(' + argumentsAsString + ')'
+
+  page.Console.evaluateJS(functionCall, function (err, data) {
+    if (err) throw new Error(err)
+    request.reply({
+      result: new RemoteObject(typeof data.result, data.result),
+      wasThrown: false
+    })
+  })
+
+}
+
+module.exports = Runtime
