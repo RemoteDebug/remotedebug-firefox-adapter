@@ -52,9 +52,8 @@ CSS.prototype.getMatchedStylesForNode = function (request) {
   }, function (err, data) {
     if (err) throw new Error(err)
 
-
     data.rules = data.rules.filter(function (rule) {
-      return rule.type !== 100
+      return rule.type !== 100 // Filter out type==100 rules, as they are empty objects
     })
 
     var response = {
