@@ -1,4 +1,4 @@
-var Q = require('q')
+var Promise = require('es6-promise').Promise
 var Client = require('./lib/client')
 var Server = require('./lib/server')
 var logger = require('./lib/logger')
@@ -54,15 +54,14 @@ Adaptor.prototype = {
   start: function () {
     logger.info('adaptor.start')
 
-    var whenReady = Q.all([this.server.start(), this.client.connect()])
-
+    var whenReady = Promise.all([this.server.start(), this.client.connect()])
     whenReady
       .then(function () {
         logger.info('adaptor.ready')
         logger.info('-> visit http://localhost:' + this.options.server.port + '/json/')
       }.bind(this))
-      .catch(function () {
-        logger.error('adaptor.error')
+      .catch(function (err) {
+        logger.error('adaptor.error', err)
       })
   }
 

@@ -1,4 +1,4 @@
-var Q = require('q')
+var Promise = require('es6-promise').Promise
 
 function DomNode (geckoNode) {
   this.geckoNode = geckoNode
@@ -54,30 +54,27 @@ DomNode.prototype = {
   },
 
   _getChildren: function () {
-    var dfd = Q.defer()
+    var that = this
 
-    this.geckoNode.children(function (err, nodes) {
-      if (err) console.error(err)
+    return new Promise(function (resolve, reject) {
+      that.geckoNode.children(function (err, nodes) {
+        if (err) console.error(err)
 
-      var childDfd = []
-      var mapped = nodes.map(function (node) {
-        var n = new DomNode(node)
-        childDfd.push(n.build(node))
-        return n
+        var childPromises = []
+        var childNodes = nodes.map(function (node) {
+          var n = new DomNode(node)
+          childPromises.push(n.build(node))
+          return n
+        })
+
+        Promise.all(childPromises).then(function () {
+          that.children = childNodes
+          that.childNodeCount = that.children.length
+          resolve(childNodes)
+        })
       })
+    })
 
-      Q.allSettled(childDfd).then(function () {
-        this.children = mapped
-        this.childNodeCount = this.children.length
-
-        console.log('this.children', this.children)
-
-        dfd.resolve(mapped)
-      }.bind(this))
-
-    }.bind(this))
-
-    return dfd.promise
   },
 
   _updateNodeId: function () {
