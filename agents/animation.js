@@ -6,11 +6,11 @@ function Animation (server, client) {
   this.server.on('Animation.getPlaybackRate', this.getPlaybackRate.bind(this))
 }
 
-util.inherits(Animation, Core);
+util.inherits(Animation, Core)
 
 Animation.prototype.getPlaybackRate = function (req) {
   req.reply({
-  	playbackRate: 1
+    playbackRate: 1
   })
 }
 

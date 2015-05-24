@@ -10,9 +10,9 @@ util.inherits(Info, Core)
 
 Info.prototype.getInfo = function (req) {
   this.client.getTabs().then(function (tabs) {
-   	var data = this._formatTabs(tabs)
+    var data = this._formatTabs(tabs)
     req.reply(data)
- 	}.bind(this))
+  }.bind(this))
 }
 
 Info.prototype._formatTabs = function (tabs) {

@@ -110,5 +110,4 @@ CSS.prototype._formatProperties = function (properties) {
   return map
 }
 
-
 module.exports = CSS

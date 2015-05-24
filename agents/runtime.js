@@ -13,7 +13,7 @@ util.inherits(Runtime, Core)
 
 Runtime.prototype.enable = function (req) {
   req.reply(true)
-},
+}
 
 Runtime.prototype.evaluate = function (request) {
   var page = this.client.getPage(request.data.pageId)

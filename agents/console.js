@@ -6,7 +6,7 @@ function Console (server, client) {
   this.server.on('Console.enable', this.enable.bind(this))
 }
 
-util.inherits(Console, Core);
+util.inherits(Console, Core)
 
 Console.prototype.enable = function (req) {
   req.reply(true)

@@ -90,7 +90,7 @@ DOM.prototype.markUndoableState = function (req) {
   req.reply({
 
   })
-},
+}
 
 DOM.prototype.setInspectedNode = function (req) {
   req.reply({
