@@ -1,9 +1,10 @@
 var CSSStyle = require('./CSSStyle')
 
 function CSSRule (geckoRule) {
-  // this.ruleId = null
-  // this.sourceURL = 'http://remotedebug.org'
-  // this.sourceLine = geckoRule.line
+  console.log('CSSStyle.geckoRule', geckoRule);
+
+  //  StyleSheetId is needed for edit-mode
+  // this.styleSheetId = geckoRule.parentStyleSheet
 
   this.selectorList = { // <List>SelectorList
     selectors: geckoRule.selectors ? geckoRule.selectors : [],
@@ -13,17 +14,10 @@ function CSSRule (geckoRule) {
   this.style = new CSSStyle(geckoRule.cssText)
   this.media = []
 
-  // this._updateId() Uncomment until StyleSheetId mapping is correct
 }
 
 CSSRule.prototype = {
-  _updateId: function (geckoRule) {
-    var extractedId = geckoRule.actor.match(/conn(.*).domstylerule(.*)/)[2]
-    this.ruleId = {
-      styleSheetId: 0,
-      ordinal: parseInt(extractedId, 10)
-    }
-  }
+
 }
 
 module.exports = CSSRule
