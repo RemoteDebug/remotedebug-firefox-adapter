@@ -40,23 +40,27 @@ DOM.prototype.getDocument = function (request) {
   }
 
 DOM.prototype.highlightNode = function (request) {
+  var page = this.client.getPage(request.data.pageId)
   var node = this.domNodeCache.getNode(request.data.pageId, request.data.params.nodeId)
-  if (!node) return
 
-  console.log('node.geckoNode', node.geckoNode)
+  page.Styles.showBoxModel(node.geckoNode.actor, function (err, response) {
+    if (err) throw new Error(err)
 
-  node.geckoNode.highlight(function () {
+    request.reply({
 
-  })
+    })
+
+  }.bind(this))
+
 }
 
 DOM.prototype.hideHighlight = function (request) {
   var page = this.client.getPage(request.data.pageId)
-  page.DOM.document(function (err, elmDocument) {
-    if (!err) {
-      elmDocument.unhighlight(function () {})
-    }
-  })
+  page.Styles.hideBoxModel(function (err, response) {
+
+    if (err) throw new Error(err)
+
+  }.bind(this))
 }
 
 DOM.prototype.setAttributesAsText = function (request) {
