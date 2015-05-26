@@ -8,6 +8,7 @@ var DOMNodeCache = require('./lib/domNodeCache')
 var Animation = require('./agents/animation')
 var Emulation = require('./agents/emulation')
 var Info = require('./agents/info')
+var Inspector = require('./agents/inspector')
 var Console = require('./agents/console')
 var Runtime = require('./agents/runtime')
 var Page = require('./agents/page')
@@ -43,6 +44,7 @@ function Adaptor (options) {
     new Emulation(this.server, this.client, domNodeCache),
     new Page(this.server, this.client, domNodeCache),
     new Info(this.server, this.client, domNodeCache),
+    new Inspector(this.server, this.client, domNodeCache),
     new Network(this.server, this.client, domNodeCache),
     new Runtime(this.server, this.client, domNodeCache),
     new Worker(this.server, this.client, domNodeCache)
