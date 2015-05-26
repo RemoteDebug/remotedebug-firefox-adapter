@@ -1,5 +1,6 @@
 var util = require('util')
 var Core = require('../lib/core')
+var logger = require('../lib/logger')
 
 var CSSRule = require('../objects/CSSRule')
 var CSSComputedStyleProperty = require('../objects/CSSComputedStyleProperty')
@@ -50,7 +51,10 @@ CSS.prototype.getMatchedStylesForNode = function (request) {
   page.Styles.getApplied(node.geckoNode.actor, {
     matchedSelectors: true
   }, function (err, data) {
-    if (err) throw new Error(err)
+    if (err) {
+      logger.error(err)
+      return
+    }
 
     data.rules = data.rules.filter(function (rule) {
       return rule.type !== 100 // Filter out type==100 rules, as they are empty objects
