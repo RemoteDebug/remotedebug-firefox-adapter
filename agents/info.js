@@ -20,7 +20,7 @@ Info.prototype._formatTabs = function (tabs) {
     return {
       description: '',
       devtoolsFrontendUrl: '/devtools/devtools.html?ws=localhost:' + this.server.port + '/devtools/page/' + tab.tab.actor,
-      devtoolsUrl: 'chrome-devtools://devtools/bundled/devtools.html?ws=localhost:' + this.server.port + '/devtools/page/' + tab.tab.actor,
+      devtoolsUrl: 'chrome-devtools://devtools/bundled/devtools.html?ws=localhost:' + this.server.port + '/devtools/page/' + tab.tab.actor + '&remoteFrontend=true',
       id: tab.tab.actor,
       title: tab.title,
       type: 'page',
