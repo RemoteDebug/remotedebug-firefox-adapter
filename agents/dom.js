@@ -1,6 +1,8 @@
 var util = require('util')
 var Core = require('../lib/core')
 var DomNode = require('../objects/domNode')
+var logger = require('../lib/logger')
+
 
 function DOM (server, client, domNodeCache) {
   this.initialize(server, client)
@@ -19,29 +21,35 @@ function DOM (server, client, domNodeCache) {
 util.inherits(DOM, Core)
 
 DOM.prototype.getDocument = function (request) {
-    var page = this.client.getPage(request.data.pageId)
+  var page = this.client.getPage(request.data.pageId)
 
-    page.DOM.document(function (err, elmDocument) {
-      if (err) throw new Error(err)
+  page.DOM.document(function (err, elmDocument) {
+    if (err) throw new Error(err)
 
-      var node = new DomNode(elmDocument)
-      node.build().then(function () {
-        this.domNodeCache.buildPageDomIndex(request.data.pageId, node)
+    var node = new DomNode(elmDocument)
+    node.build().then(function () {
+      this.domNodeCache.buildPageDomIndex(request.data.pageId, node)
 
-        var res = {
-          root: node.toJSON()
-        }
+      var res = {
+        root: node.toJSON()
+      }
 
-        request.reply(res)
-
-      }.bind(this))
+      request.reply(res)
 
     }.bind(this))
-  }
+
+  }.bind(this))
+}
 
 DOM.prototype.highlightNode = function (request) {
   var page = this.client.getPage(request.data.pageId)
   var node = this.domNodeCache.getNode(request.data.pageId, request.data.params.nodeId)
+
+  logger.info('DOM.highlightNode', request.data.params.nodeId)
+
+  if(!node) return
+
+  logger.info('DOM.highlightNode.node', node.geckoNode.nodeType)
 
   page.Styles.showBoxModel(node.geckoNode.actor, function (err, response) {
     if (err) throw new Error(err)
@@ -54,8 +62,8 @@ DOM.prototype.highlightNode = function (request) {
 
 }
 
-DOM.prototype.hideHighlight = function (request) {
-  var page = this.client.getPage(request.data.pageId)
+DOM.prototype.hideHighlight = function (req) {
+  var page = this.client.getPage(req.data.pageId)
   page.Styles.hideBoxModel(function (err, response) {
 
     if (err) throw new Error(err)
