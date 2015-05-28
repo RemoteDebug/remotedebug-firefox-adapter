@@ -16,6 +16,7 @@ function DOM (server, client, domNodeCache) {
   this.server.on('DOM.setInspectedNode', this.setInspectedNode.bind(this))
 
   this.domNodeCache = domNodeCache
+  this._sentCSS = false
 }
 
 util.inherits(DOM, Core)
@@ -60,15 +61,22 @@ DOM.prototype.highlightNode = function (request) {
 
   }.bind(this))
 
+
 }
 
 DOM.prototype.hideHighlight = function (req) {
   var page = this.client.getPage(req.data.pageId)
   page.Styles.hideBoxModel(function (err, response) {
-
     if (err) throw new Error(err)
-
   }.bind(this))
+
+  // Chrome dev tools never requests CSS files, but always sends "hideHighlight" command around when it expects to get the CSS files.
+  // this hack will do until we implement a better way to post events.
+  if (!this._sentCSS) {
+    this._sendStylesheets(req);
+    this._sentCSS = true;
+  }
+
 }
 
 DOM.prototype.setAttributesAsText = function (request) {
@@ -110,4 +118,36 @@ DOM.prototype.setInspectedNode = function (req) {
   })
 }
 
+DOM.prototype._sendStylesheets = function(req) {
+
+  var page = this.client.getPage(req.data.pageId)
+
+  console.log('_sendStylesheets');
+
+  page.StyleSheets.getStyleSheets(function (err, styleSheets) {
+
+    console.log('_sendStylesheets', err, styleSheets);
+
+    styleSheets.forEach(function(stylesheet) {
+      var header = {
+        styleSheetId: stylesheet.actor,
+        origin: "regular",
+        disabled: stylesheet.disabled,
+        sourceURL: stylesheet.href,
+        title: stylesheet.href,
+        frameId: "1500.1",
+        isInline: "false",
+        startLine: "0",
+        startColumn: "0",
+        ownerNode: stylesheet.ownerNode
+      }
+
+      req.sendNotification('CSS.styleSheetAdded', {
+        header: header
+      })
+    });
+
+  }.bind(this))
+
+}
 module.exports = DOM
