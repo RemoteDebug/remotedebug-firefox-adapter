@@ -29,7 +29,7 @@ DOM.prototype.getDocument = function (req) {
     if (err) throw new Error(err)
 
     var node = new DomNode(elmDocument)
-    node.buildTree(3).then(function () {
+    node.buildTree(2).then(function () {
       this.domNodeCache.buildPageDomIndex(req.data.pageId, node)
 
       var res = {
