@@ -5,14 +5,14 @@ function DomNode (geckoNode) {
 
   this.nodeId = 0
   this.nodeName = geckoNode.nodeName
-  this.localName = geckoNode.localName || ''
+  this.localName = geckoNode.localName || geckoNode.nodeName
   this.nodeType = geckoNode.nodeType
   this.nodeValue = geckoNode.nodeValue || ''
-  this.xmlVersion = geckoNode.xmlVersion || ''
+  // this.xmlVersion = geckoNode.xmlVersion || ''
   this.childNodeCount = geckoNode.numChildren || 0
-  this.children = []
-  this.documentURL = 'http://kenneth.io'
-  this.baseURL = 'http://kenneth.io'
+  // this.children = []
+  // this.documentURL = 'http://kenneth.io'
+  // this.baseURL = 'http://kenneth.io'
   this.attributes = []
 
   this._updateNodeId()
@@ -20,13 +20,13 @@ function DomNode (geckoNode) {
 
 DomNode.prototype = {
 
-  build: function () {
+  buildTree: function (maxDepth, currentDepth) {
     this._mapAttributes()
-    return this._getChildren()
+    return this._getChildren(maxDepth, currentDepth)
   },
 
   toJSON: function () {
-    return {
+    var data = {
       nodeId: this.nodeId,
       nodeName: this.nodeName,
       localName: this.localName,
@@ -34,13 +34,31 @@ DomNode.prototype = {
       nodeValue: this.nodeValue,
       xmlVersion: this.xmlVersion,
       childNodeCount: this.childNodeCount,
-      children: this.children.map(function (item) {
-        return item.toJSON()
-      }),
       documentURL: this.documentURL,
       baseURL: this.baseURL,
       attributes: this.attributes
     }
+
+    if(this.children) {
+      data.children = this.children.map(function (item) {
+        return item.toJSON()
+      })
+    }
+
+    return data
+
+  },
+
+  getChildren: function() {
+
+    if(this.children) {
+      return this.children.map(function (item) {
+        return item.toJSON()
+      })
+    } else {
+      return []
+    }
+
   },
 
   _mapAttributes: function () {
@@ -53,8 +71,9 @@ DomNode.prototype = {
     }, [])
   },
 
-  _getChildren: function () {
+  _getChildren: function (maxDepth, currentDepth) {
     var that = this
+    currentDepth = currentDepth || 1
 
     return new Promise(function (resolve, reject) {
       that.geckoNode.children(function (err, nodes) {
@@ -63,13 +82,18 @@ DomNode.prototype = {
         var childPromises = []
         var childNodes = nodes.map(function (node) {
           var n = new DomNode(node)
-          childPromises.push(n.build(node))
+          var promise;
+          if(currentDepth < maxDepth) {
+            promise = n.buildTree(maxDepth, currentDepth+1)
+          } else {
+            promise = Promise.resolve(node)
+          }
+          childPromises.push(promise)
           return n
         })
 
         Promise.all(childPromises).then(function () {
           that.children = childNodes
-          that.childNodeCount = that.children.length
           resolve(childNodes)
         })
       })

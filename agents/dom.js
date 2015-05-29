@@ -14,6 +14,7 @@ function DOM (server, client, domNodeCache) {
   this.server.on('DOM.getAttributes', this.getAttributes.bind(this))
   this.server.on('DOM.markUndoableState', this.markUndoableState.bind(this))
   this.server.on('DOM.setInspectedNode', this.setInspectedNode.bind(this))
+  this.server.on('DOM.requestChildNodes', this.requestChildNodes.bind(this))
 
   this.domNodeCache = domNodeCache
   this._sentCSS = false
@@ -21,21 +22,21 @@ function DOM (server, client, domNodeCache) {
 
 util.inherits(DOM, Core)
 
-DOM.prototype.getDocument = function (request) {
-  var page = this.client.getPage(request.data.pageId)
+DOM.prototype.getDocument = function (req) {
+  var page = this.client.getPage(req.data.pageId)
 
   page.DOM.document(function (err, elmDocument) {
     if (err) throw new Error(err)
 
     var node = new DomNode(elmDocument)
-    node.build().then(function () {
-      this.domNodeCache.buildPageDomIndex(request.data.pageId, node)
+    node.buildTree(3).then(function () {
+      this.domNodeCache.buildPageDomIndex(req.data.pageId, node)
 
       var res = {
         root: node.toJSON()
       }
 
-      request.reply(res)
+      req.reply(res)
 
     }.bind(this))
 
@@ -114,8 +115,38 @@ DOM.prototype.markUndoableState = function (req) {
 
 DOM.prototype.setInspectedNode = function (req) {
   req.reply({
+  })
+}
+
+DOM.prototype.requestChildNodes = function (req) {
+
+  var node = this.domNodeCache.getNode(req.data.pageId, req.data.params.nodeId)
+
+  logger.info('DOM.requestChildNodes', req.data.pageId, req.data.params.nodeId)
+
+  if(!node) {
+    logger.info('DOM.requestChildNodes', req.data.params.nodeId, 'NOT FOUND')
+    return
+  }
+
+  node.buildTree(1).then(function () {
+    this.domNodeCache.buildPageDomIndex(req.data.pageId, node)
+
+    var params = {
+      parentId: req.data.params.nodeId,
+      nodes: node.getChildren()
+    }
+
+    req.sendNotification('DOM.setChildNodes', params)
+
+  req.reply({
 
   })
+
+  }.bind(this))
+
+
+
 }
 
 DOM.prototype._sendStylesheets = function(req) {
