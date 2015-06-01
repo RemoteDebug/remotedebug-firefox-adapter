@@ -16,12 +16,13 @@ function DomNode (geckoNode) {
   this.attributes = []
 
   this._updateNodeId()
+  this._mapAttributes()
 }
 
 DomNode.prototype = {
 
   buildTree: function (maxDepth, currentDepth) {
-    this._mapAttributes()
+
     return this._getChildren(maxDepth, currentDepth)
   },
 
@@ -67,7 +68,7 @@ DomNode.prototype = {
     }
 
     this.attributes = this.geckoNode.attrs.reduce(function (pre, cur, index) {
-      return pre.concat([cur.name, cur.value])
+      return pre.concat([cur.name,cur.value])
     }, [])
   },
 
