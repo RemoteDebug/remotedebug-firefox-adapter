@@ -1,0 +1,17 @@
+{
+  "method": "CSS.styleSheetAdded",
+  "params": {
+    "header": {
+      "styleSheetId": "7",
+      "origin": "regular",
+      "disabled": false,
+      "sourceURL": "data:text/html,chromewebdata",
+      "title": "",
+      "frameId": "61110.1",
+      "isInline": true,
+      "startLine": 7,
+      "startColumn": 9,
+      "ownerNode": 2
+    }
+  }
+}

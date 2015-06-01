@@ -1,0 +1,89 @@
+{
+  "method": "DOM.setChildNodes",
+  "params": {
+    "parentId": 13,
+    "nodes": [{
+      "nodeId": 14,
+      "nodeType": 1,
+      "nodeName": "HEADER",
+      "localName": "header",
+      "nodeValue": "",
+      "attributes": ["class", "page"],
+      "childNodeCount": 3
+    }, {
+      "nodeId": 15,
+      "nodeType": 1,
+      "nodeName": "DIV",
+      "localName": "div",
+      "nodeValue": "",
+      "attributes": ["class", "content"],
+      "childNodeCount": 4
+    }, {
+      "nodeId": 16,
+      "nodeType": 1,
+      "nodeName": "SCRIPT",
+      "localName": "script",
+      "nodeValue": "",
+      "attributes": ["async", "", "src", "//www.google-analytics.com/analytics.js"],
+      "childNodeCount": 0
+    }, {
+      "nodeId": 17,
+      "nodeType": 1,
+      "nodeName": "SCRIPT",
+      "localName": "script",
+      "nodeValue": "",
+      "attributes": ["src", "/js/responsive-nav.js"],
+      "childNodeCount": 0
+    }, {
+      "nodeId": 18,
+      "nodeType": 1,
+      "nodeName": "SCRIPT",
+      "localName": "script",
+      "nodeValue": "",
+      "attributes": ["src", "/js/page.js"],
+      "childNodeCount": 0
+    }]
+  }
+}
+
+
+{
+  "method": "DOM.setChildNodes",
+  "params": {
+    "parentId": 55,
+    "nodes": [{
+      "nodeId": 66,
+      "nodeName": "A",
+      "localName": "A",
+      "nodeType": 1,
+      "nodeValue": "",
+      "xmlVersion": "",
+      "childNodeCount": 5,
+      "documentURL": "http://kenneth.io",
+      "baseURL": "http://kenneth.io",
+      "attributes": []
+    }, {
+      "nodeId": 67,
+      "nodeName": "A",
+      "localName": "A",
+      "nodeType": 1,
+      "nodeValue": "",
+      "xmlVersion": "",
+      "childNodeCount": 1,
+      "documentURL": "http://kenneth.io",
+      "baseURL": "http://kenneth.io",
+      "attributes": []
+    }, {
+      "nodeId": 68,
+      "nodeName": "NAV",
+      "localName": "NAV",
+      "nodeType": 1,
+      "nodeValue": "",
+      "xmlVersion": "",
+      "childNodeCount": 3,
+      "documentURL": "http://kenneth.io",
+      "baseURL": "http://kenneth.io",
+      "attributes": []
+    }]
+  }
+}
