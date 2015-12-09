@@ -7,7 +7,7 @@ This is a protocol adaptor that allows you to remote debug Firefox instances via
 ## Getting started
 
 1. Run `npm install`
-2. Start Firefox with remote debugging enabled using `path/to/firefox --start-debugger-server 6000`
+2. Start Firefox with remote debugging enabled using `path/to/firefox --start-debugger-server`
 3. Run `npm start`
 4. Open `http://localhost:9222/json` in Chrome.
 5. Locate your tab in the json-output, and open the `devtoolsUrl` url in Chrome.
