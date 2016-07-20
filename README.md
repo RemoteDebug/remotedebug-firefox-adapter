@@ -1,5 +1,8 @@
 # RemoteDebug Firefox Adaptor.
 
+**DEPRECATION: This protocol adapter has never left it's experimantal stage, and does currently nok work with Chrome DevTools, as the Remote Debugging API's have diverged. If you want to collaborate please reach out to me.**
+
+
 This is a protocol adaptor that allows you to remote debug Firefox instances via [RemoteDebug](http://remotedebug.org), aka Chrome Debugging protocol, with tools like Chrome DevTools.
 
 ![](https://raw.github.com/auchenberg/remotedebug-firefox-bridge/master/readme/animation.gif)
